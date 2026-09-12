@@ -1,6 +1,8 @@
 import { v } from 'convex/values'
 import { internal } from './_generated/api'
-import { internalMutation, internalQuery, query } from './_generated/server'
+import type { Id } from './_generated/dataModel'
+import type { MutationCtx } from './_generated/server'
+import { internalMutation, internalQuery, mutation, query } from './_generated/server'
 import { overlap } from './policy'
 import { workStatus } from './schema'
 
@@ -31,6 +33,33 @@ export const listSources = query({
       .collect(),
 })
 
+export const listArtifacts = query({
+  args: { meetingId: v.id('meetings') },
+  handler: (ctx, { meetingId }) =>
+    ctx.db
+      .query('artifacts')
+      .withIndex('by_meeting', (q) => q.eq('meetingId', meetingId))
+      .collect(),
+})
+
+export const approve = mutation({
+  args: { workItemId: v.id('workItems') },
+  handler: (ctx, { workItemId }) =>
+    decide(ctx, workItemId, 'approved', 'Approved by you — execution would be handed to the connected messaging integration.'),
+})
+
+export const reject = mutation({
+  args: { workItemId: v.id('workItems') },
+  handler: (ctx, { workItemId }) => decide(ctx, workItemId, 'rejected', 'Rejected by you.'),
+})
+
+async function decide(ctx: MutationCtx, workItemId: Id<'workItems'>, status: 'approved' | 'rejected', message: string) {
+  const item = await ctx.db.get(workItemId)
+  if (item?.status !== 'waiting_approval') return
+  await ctx.db.patch(workItemId, { status })
+  await ctx.db.insert('workEvents', { workItemId, type: status, message, createdAt: Date.now() })
+}
+
 export const getWorkItem = internalQuery({
   args: { workItemId: v.id('workItems') },
   handler: (ctx, { workItemId }) => ctx.db.get(workItemId),
@@ -57,13 +86,34 @@ export const updateSource = internalMutation({
   handler: (ctx, { sourceId, ...patch }) => ctx.db.patch(sourceId, patch),
 })
 
+export const insertArtifact = internalMutation({
+  args: { meetingId: v.id('meetings'), workItemId: v.id('workItems'), title: v.string(), content: v.any() },
+  handler: (ctx, args) => ctx.db.insert('artifacts', { ...args, type: 'brief', createdAt: Date.now() }),
+})
+
 export const completeItem = internalMutation({
   args: { workItemId: v.id('workItems'), result: v.any(), message: v.string() },
   handler: async (ctx, { workItemId, result, message }) => {
+    const item = (await ctx.db.get(workItemId))!
     await ctx.db.patch(workItemId, { result, status: 'completed' })
     await ctx.db.insert('workEvents', { workItemId, type: 'completed', message, createdAt: Date.now() })
+    await resolveDependencies(ctx, item.meetingId)
   },
 })
+
+async function resolveDependencies(ctx: MutationCtx, meetingId: Id<'meetings'>) {
+  const items = await ctx.db
+    .query('workItems')
+    .withIndex('by_meeting', (q) => q.eq('meetingId', meetingId))
+    .collect()
+  const done = new Set(items.filter((i) => i.status === 'completed').map((i) => i._id))
+  for (const item of items) {
+    if (item.status !== 'waiting_dependency' || !item.dependencyIds.every((d) => done.has(d))) continue
+    await ctx.db.patch(item._id, { status: 'queued' })
+    await ctx.db.insert('workEvents', { workItemId: item._id, type: 'queued', message: 'Dependencies complete — queued for AI execution', createdAt: Date.now() })
+    if (item.kind === 'artifact') await ctx.scheduler.runAfter(0, internal.brief.buildBrief, { workItemId: item._id })
+  }
+}
 
 export const detectionContext = internalQuery({
   args: { meetingId: v.id('meetings') },
@@ -156,6 +206,7 @@ export const insertWorkItems = internalMutation({
         })
       }
       if (status === 'queued' && item.kind === 'research') await ctx.scheduler.runAfter(0, internal.research.runResearch, { workItemId })
+      if (status === 'queued' && item.kind === 'artifact') await ctx.scheduler.runAfter(0, internal.brief.buildBrief, { workItemId })
       known.push((await ctx.db.get(workItemId))!)
     }
   },

@@ -2,12 +2,16 @@ import { useEffect } from 'react'
 import { useQuery } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import { EXECUTOR, STATUS, type WorkItem } from '../lib/status.ts'
+import ApprovalCard from './ApprovalCard.tsx'
+import BriefView from './BriefView.tsx'
 import ResearchResult from './ResearchResult.tsx'
 import SourceList from './SourceList.tsx'
 
 export default function WorkDetails({ item, onClose }: { item: WorkItem; onClose: () => void }) {
   const events = useQuery(api.work.listEvents, { workItemId: item._id })
   const sources = useQuery(api.work.listSources, { workItemId: item._id })
+  const artifacts = useQuery(api.work.listArtifacts, { meetingId: item.meetingId })
+  const artifact = artifacts?.find((a) => a.workItemId === item._id)
   const exec = EXECUTOR[item.executorType]
   const status = STATUS[item.status]
   const showSources = item.kind === 'research' && (status.active || (sources?.length ?? 0) > 0)
@@ -59,12 +63,18 @@ export default function WorkDetails({ item, onClose }: { item: WorkItem; onClose
             <h4 className="mt-5 text-xs font-semibold uppercase tracking-wide text-base-content/50">Result</h4>
             {item.kind === 'research' ? (
               <ResearchResult result={item.result} sources={sources ?? []} />
+            ) : artifact ? (
+              <BriefView item={item} artifact={artifact} />
             ) : (
-              <pre className="mt-2 overflow-x-auto rounded-box bg-base-300/40 p-3 text-xs">
-                {JSON.stringify(item.result, null, 2)}
-              </pre>
+              <div className="skeleton mt-2 h-24 w-full" />
             )}
           </>
+        )}
+
+        {item.executorType === 'approval_required' && (
+          <div className="mt-5">
+            <ApprovalCard item={item} briefReady={(artifacts?.length ?? 0) > 0} />
+          </div>
         )}
 
         {showSources && (

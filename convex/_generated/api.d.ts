@@ -8,6 +8,7 @@
  * @module
  */
 
+import type * as brief from "../brief.js";
 import type * as demo from "../demo.js";
 import type * as detect from "../detect.js";
 import type * as policy from "../policy.js";
@@ -22,6 +23,7 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  brief: typeof brief;
   demo: typeof demo;
   detect: typeof detect;
   policy: typeof policy;

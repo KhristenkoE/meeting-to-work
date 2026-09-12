@@ -9,12 +9,17 @@ import Transcript from '../components/Transcript.tsx'
 import WorkCard from '../components/WorkCard.tsx'
 import WorkDetails from '../components/WorkDetails.tsx'
 import { Wordmark } from '../components/landing/Nav.tsx'
+import Results from '../components/Results.tsx'
+import { STATUS } from '../lib/status.ts'
 
 export default function Demo() {
   const meetingId = useParams().meetingId as Id<'meetings'>
   const meeting = useQuery(api.demo.getMeeting, { meetingId })
   const chunks = useQuery(api.demo.listChunks, { meetingId })
   const items = useQuery(api.work.listWorkItems, { meetingId })
+  const artifacts = useQuery(api.work.listArtifacts, { meetingId })
+  const briefReady = (artifacts?.length ?? 0) > 0
+  const showResults = meeting?.status === 'completed' && !!items?.length && !items.some((i) => STATUS[i.status].active)
   const [selectedId, setSelectedId] = useState<Id<'workItems'> | null>(null)
   const selected = items?.find((i) => i._id === selectedId)
 
@@ -94,8 +99,9 @@ export default function Demo() {
                 </p>
               ) : (
                 <div className="space-y-3">
+                  {showResults && <Results items={items} />}
                   {items.map((item) => (
-                    <WorkCard key={item._id} item={item} onSelect={(i) => setSelectedId(i._id)} />
+                    <WorkCard key={item._id} item={item} briefReady={briefReady} onSelect={(i) => setSelectedId(i._id)} />
                   ))}
                 </div>
               )}

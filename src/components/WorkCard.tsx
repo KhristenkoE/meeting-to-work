@@ -1,15 +1,12 @@
 import { EXECUTOR, KIND, STATUS, dotClass, relativeDay, type WorkItem } from '../lib/status.ts'
+import ApprovalCard from './ApprovalCard.tsx'
 
-export default function WorkCard({ item, onSelect }: { item: WorkItem; onSelect: (item: WorkItem) => void }) {
+export default function WorkCard({ item, briefReady, onSelect }: { item: WorkItem; briefReady: boolean; onSelect: (item: WorkItem) => void }) {
   const exec = EXECUTOR[item.executorType]
   const status = STATUS[item.status]
   return (
-    <button
-      type="button"
-      onClick={() => onSelect(item)}
-      className="card w-full cursor-pointer border border-base-300/60 bg-base-200 text-left transition-colors hover:border-primary/50"
-    >
-      <div className="card-body gap-2 p-4">
+    <div className="card border border-base-300/60 bg-base-200 transition-colors hover:border-primary/50">
+      <button type="button" onClick={() => onSelect(item)} className="card-body w-full cursor-pointer gap-2 p-4 text-left">
         <div className="flex items-center gap-2">
           <span className={`badge badge-sm gap-1 ${exec.badgeClass}`}>
             <exec.Icon size={12} /> {exec.label}
@@ -35,7 +32,12 @@ export default function WorkCard({ item, onSelect }: { item: WorkItem; onSelect:
             <span className="ml-auto text-warning">Awaiting approval</span>
           )}
         </div>
-      </div>
-    </button>
+      </button>
+      {item.executorType === 'approval_required' && (
+        <div className="px-4 pb-4">
+          <ApprovalCard item={item} briefReady={briefReady} compact />
+        </div>
+      )}
+    </div>
   )
 }
