@@ -6,6 +6,8 @@ An AI execution layer for meetings: it listens to a conversation, detects work, 
 
 [Live demo](https://meeting2work.onrender.com/) · [Repo](https://github.com/KhristenkoE/meeting-to-work)
 
+![Meeting2Work demo: transcript on the left, work cards executing on the right](public/demo.png)
+
 ## What it does
 
 - **Listens.** A meeting transcript arrives line by line (server-replayed sample meeting; the same path accepts live speech-to-text).
