@@ -1,4 +1,46 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: synthwave --default;
+  themes: false;
+}
+@plugin "daisyui/theme" {
+  name: "m2w";
+  default: true;
+  color-scheme: dark;
+  --color-base-100: #0a0a0f;
+  --color-base-200: #12121a;
+  --color-base-300: #1c1c28;
+  --color-base-content: #ededf3;
+  --color-primary: #7c3aed;
+  --color-primary-content: #ffffff;
+  --color-secondary: #22d3ee;
+  --color-secondary-content: #062a30;
+  --color-accent: #a78bfa;
+  --color-accent-content: #14082b;
+  --color-neutral: #262636;
+  --color-neutral-content: #ededf3;
+  --color-info: #60a5fa;
+  --color-info-content: #061a33;
+  --color-success: #34d399;
+  --color-success-content: #052e20;
+  --color-warning: #fbbf24;
+  --color-warning-content: #2a1c02;
+  --color-error: #f87171;
+  --color-error-content: #2e0707;
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 0;
+  --noise: 0;
+}
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+.bg-grid {
+  background-image: linear-gradient(to right, color-mix(in oklab, var(--color-base-content) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-base-content) 5%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 100%);
 }
