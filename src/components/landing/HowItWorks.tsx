@@ -1,9 +1,9 @@
 import { Ear, GitBranch, ListChecks } from 'lucide-react'
 
 const steps = [
-  { icon: Ear, title: 'Listens', text: 'Follows the transcript in real time as people talk.' },
-  { icon: ListChecks, title: 'Finds the work', text: 'Each agreed item becomes a card with the evidence line and the reason it was picked.' },
-  { icon: GitBranch, title: 'Does, assigns or asks', text: 'Safe research and drafting run now with real sources, people get an owner and due date, anything sent externally waits for approval.' },
+  { icon: Ear, title: 'Listens', text: 'Meeting2Work follows the transcript in real time as people talk.' },
+  { icon: ListChecks, title: 'Finds the work', text: 'Each agreed item becomes a card with the evidence line and the reason Meeting2Work picked it.' },
+  { icon: GitBranch, title: 'Does, assigns or asks', text: 'Meeting2Work runs safe research and drafting now with real sources, gives human tasks an owner and due date, and holds anything sent externally for approval.' },
 ]
 
 export default function HowItWorks() {

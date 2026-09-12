@@ -74,7 +74,7 @@ export default function Mockup() {
           </div>
         </div>
       </div>
-      <p className="mt-4 text-center text-sm text-base-content/50">Someone says it. The work starts.</p>
+      <p className="mt-4 text-center text-sm text-base-content/50">Someone says it. Meeting2Work starts the work.</p>
     </section>
   )
 }

@@ -13,13 +13,13 @@ export default function Hero() {
           AI execution layer for meetings
         </span>
         <h1 className="mt-8 text-6xl font-extrabold leading-[1.02] tracking-tight lg:text-7xl">
-          Research, briefs and tasks,{' '}
+          Your work gets done{' '}
           <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-            done before the meeting ends.
+            while you're still talking.
           </span>
         </h1>
         <p className="mt-7 max-w-2xl text-xl leading-relaxed text-base-content/65">
-          During the meeting it finds what was agreed, does the research and briefs itself, assigns human tasks, and asks before sending anything.
+          Ever finished a meeting, reread the transcript, and then done every action item yourself or handed it to an agent by hand? Meeting2Work listens as you talk, picks out the work, runs the research and drafts itself, assigns tasks to people, and asks you before anything is sent.
         </p>
         <StartDemoButton className="btn btn-primary btn-lg mt-10 shadow-lg shadow-primary/30">
           Experience sample meeting <ArrowRight size={20} />

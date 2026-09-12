@@ -1,4 +1,3 @@
-import Footer from '../components/landing/Footer.tsx'
 import Hero from '../components/landing/Hero.tsx'
 import HowItWorks from '../components/landing/HowItWorks.tsx'
 import Mockup from '../components/landing/Mockup.tsx'
@@ -13,7 +12,6 @@ export default function Landing() {
         <Mockup />
         <HowItWorks />
       </main>
-      <Footer />
     </div>
   )
 }
