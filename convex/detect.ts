@@ -37,8 +37,10 @@ export const detectWork = internalAction({
         abortSignal: AbortSignal.timeout(20000),
       })
       candidates = object
+      if (meeting.lastError) await ctx.runMutation(internal.work.setMeetingError, { meetingId })
     } catch (e) {
       console.error('detectWork failed', e)
+      await ctx.runMutation(internal.work.setMeetingError, { meetingId, lastError: String(e instanceof Error ? e.message : e).slice(0, 200) })
       return
     }
     const seen = items.map((i) => ({ kind: i.kind, title: i.title, fingerprint: i.fingerprint }))

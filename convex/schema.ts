@@ -24,6 +24,7 @@ export default defineSchema({
     status: v.union(v.literal('running'), v.literal('completed')),
     startedAt: v.number(),
     endedAt: v.optional(v.number()),
+    lastError: v.optional(v.string()),
   }),
   transcriptChunks: defineTable({
     meetingId: v.id('meetings'),

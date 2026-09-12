@@ -4,6 +4,7 @@ import { v } from 'convex/values'
 import { api, internal } from './_generated/api'
 import { internalAction } from './_generated/server'
 import { MODEL } from './detect'
+import { briefFallback, fallbackMessage } from './fallback'
 import { CompetitorBrief, type ResearchResult } from './schemas'
 
 export const buildBrief = internalAction({
@@ -14,7 +15,7 @@ export const buildBrief = internalAction({
     try {
       await ctx.runMutation(internal.work.setStatus, { workItemId, status: 'synthesizing', message: 'Writing the brief from research results' })
       const deps = await Promise.all(item.dependencyIds.map((id) => ctx.runQuery(internal.work.getWorkItem, { workItemId: id })))
-      const results = deps.filter((d) => d?.status === 'completed' && d.result)
+      const results = deps.filter((d) => (d?.status === 'completed' || d?.status === 'fallback_used') && d.result)
       if (!results.length) throw new Error('No completed research results to build the brief from')
       const sources = (await Promise.all(results.map((d) => ctx.runQuery(api.work.listSources, { workItemId: d!._id })))).flat()
       const research = results.map((d) => `## ${d!.title}\n${JSON.stringify(d!.result as ResearchResult)}`).join('\n\n')
@@ -30,7 +31,9 @@ export const buildBrief = internalAction({
       await ctx.runMutation(internal.work.completeItem, { workItemId, result: object, message: object.headline.slice(0, 200) })
     } catch (e) {
       console.error('buildBrief failed', e)
-      await ctx.runMutation(internal.work.setStatus, { workItemId, status: 'failed', message: String(e instanceof Error ? e.message : e).slice(0, 200) })
+      const { content } = briefFallback as { content: CompetitorBrief }
+      await ctx.runMutation(internal.work.insertArtifact, { meetingId: item.meetingId, workItemId, title: content.headline, content })
+      await ctx.runMutation(internal.work.completeItem, { workItemId, result: content, status: 'fallback_used', message: fallbackMessage(e) })
     }
   },
 })

@@ -7,6 +7,7 @@ import Exa from 'exa-js'
 import { api, internal } from './_generated/api'
 import { internalAction } from './_generated/server'
 import { MODEL } from './detect'
+import { fallbackMessage, researchFallback } from './fallback'
 import { ResearchResult } from './schemas'
 
 const TIMEOUT = 20000
@@ -89,7 +90,14 @@ export const runResearch = internalAction({
       await ctx.runMutation(internal.work.completeItem, { workItemId, result: object, message: object.summary.slice(0, 200) })
     } catch (e) {
       console.error('runResearch failed', e)
-      await ctx.runMutation(internal.work.setStatus, { workItemId, status: 'failed', message: String(e instanceof Error ? e.message : e).slice(0, 200) })
+      const cached = researchFallback(item.title)
+      if (!cached) {
+        await ctx.runMutation(internal.work.setStatus, { workItemId, status: 'failed', message: String(e instanceof Error ? e.message : e).slice(0, 200) })
+        return
+      }
+      if (!(await ctx.runQuery(api.work.listSources, { workItemId })).length)
+        await ctx.runMutation(internal.work.insertSources, { sources: cached.sources.map((s) => ({ ...s, workItemId })) })
+      await ctx.runMutation(internal.work.completeItem, { workItemId, result: cached.result, status: 'fallback_used', message: fallbackMessage(e) })
     }
   },
 })

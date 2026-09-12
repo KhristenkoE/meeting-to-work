@@ -11,6 +11,7 @@
 import type * as brief from "../brief.js";
 import type * as demo from "../demo.js";
 import type * as detect from "../detect.js";
+import type * as fallback from "../fallback.js";
 import type * as policy from "../policy.js";
 import type * as research from "../research.js";
 import type * as schemas from "../schemas.js";
@@ -26,6 +27,7 @@ declare const fullApi: ApiFromModules<{
   brief: typeof brief;
   demo: typeof demo;
   detect: typeof detect;
+  fallback: typeof fallback;
   policy: typeof policy;
   research: typeof research;
   schemas: typeof schemas;

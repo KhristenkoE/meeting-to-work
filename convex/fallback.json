@@ -1,0 +1,221 @@
+{
+ "research": {
+  "pricing": {
+   "result": {
+    "caveats": [
+     "Asana's Starter plan price is not explicitly stated in the sources; only feature details are provided. Linear and monday.com prices are for annual billing. monday.com Free plan is limited to 2 seats while Linear Free allows unlimited members. Changes to Linear's legacy plans will occur after February 1, 2026."
+    ],
+    "findings": [
+     {
+      "entity": "Linear",
+      "sourceIds": [
+       "j9778dvebxpjda8y0xr9cbfmv98e9vnq"
+      ],
+      "values": {
+       "cheapest_paid_plan": "Basic",
+       "details": "All Free features + 5 teams, unlimited issues, unlimited file uploads, admin roles",
+       "price": "$10 per user/month (billed yearly)"
+      }
+     },
+     {
+      "entity": "Asana",
+      "sourceIds": [
+       "j978y65n073kpyqwst3azrsb0s8e800z"
+      ],
+      "values": {
+       "cheapest_paid_plan": "Starter",
+       "details": "AI Studio Basic w/50K credits per billing account per month, no user seat limits, timeline and Gantt views, reporting dashboards, unlimited automations, forms, custom templates, custom fields, unlimited free guests",
+       "price": "not found"
+      }
+     },
+     {
+      "entity": "monday.com",
+      "sourceIds": [
+       "j97ak8en53292sz4wpakkvp13h8e8yd7"
+      ],
+      "values": {
+       "cheapest_paid_plan": "Basic",
+       "details": "Includes Free features + AI features (agent workforce, meeting notetaker, Sidekick AI assistant, 2 published vibe apps, AI columns), automations (250 actions/month), integrations (250 actions/month), timeline & Gantt views",
+       "price": "$9 per seat/month (billed annually)"
+      }
+     }
+    ],
+    "summary": "Linear's cheapest paid plan is Basic at $10/user/month (billed yearly). Asana's cheapest paid plan is Starter at an unspecified per-user/month rate (billed annually; no exact pricing listed). monday.com's cheapest paid plan is Basic at $9/seat/month (billed annually)."
+   },
+   "sources": [
+    {
+     "title": "Pricing",
+     "url": "https://linear.app/pricing",
+     "snippet": "Pricing \u2013 Linear\n\n### Free\n\n$0\n\n- Unlimited members\n- 2 teams\n- 250 issues\n- Agent platform\n- Linear Agent\n\n### Basic\n\n$10 per user/month\n\nBilled yearly\n\n- All Free features +\n- 5 teams\n- Unlimited issues\n- Unlimited file uploads\n- Admin roles\n\n### Business\n\n$16 per user/month\n\nBilled yearly\n\n- All ",
+     "content": "Pricing \u2013 Linear\n\n### Free\n\n$0\n\n- Unlimited members\n- 2 teams\n- 250 issues\n- Agent platform\n- Linear Agent\n\n### Basic\n\n$10 per user/month\n\nBilled yearly\n\n- All Free features +\n- 5 teams\n- Unlimited issues\n- Unlimited file uploads\n- Admin roles\n\n### Business\n\n$16 per user/month\n\nBilled yearly\n\n- All Basic features +\n- Unlimited teams\n- Private teams and guests\n- Triage Intelligence\n- Loops\n- Code Intelligence (beta)\n- Linear Insights\n- Linear Asks\n- Zendesk and Intercom integrations\n\n### Enterprise\n\nCustom\n\nAnnual billing only\n\n- All Business features +\n- Invoice/PO billing\n- SAML and SCIM\n- Granular admin controls\n- Enterprise-grade security\n- Advanced org modeling\n- Migration & onboarding support\n- Priority support\n- Account management\n\nTrusted by more than 40,000 companies\n\n10MB \n\n250 issues\n\n2 teams\n\n5 teams\n\nCore\n\nIssues, projects, cycles, initiatives\n\nCustomer requests\n\nAPI and webhook access\n\nImport and export\n\nTriage\n\nIssue sync\n\nDiffs\n\nGuided reviews\n\nIssue SLAs\n\nTriage responsibility\n\nTriage rules\n\n15 pipelines \n\nSub-initiatives\n\nAI and agent workflows\n\nMCP access\n\nCoding sessions**\n\nLoops**\n\nCode Intelligence Beta\n\nTriage Intelligence\n\nMicrosoft Teams integration\n\nSalesforce integration Add-on\n\nTeam management\n\n5 levels \n\nPrivate teams\n\nGuest accounts\n\nAnalytics & Reporting\n\nDashboards\n\nData warehouse sync\n\nLinear Asks\n\nSlack intake\n\nEmail intake\n\nMultiple Slack workspaces\n\nPrivate Slack channels\n\nPer-channel configurations\n\nSSO\n\nGoogle + SAML \n\nTeam owners\n\nAdvanced authentication\n\nSCIM provisioning\n\nIP restrictions\n\nDomain claiming\n\nAudit log\n\nThird-party app management\n\nHIPAA compliance\n\nAccount manager",
+     "provider": "exa"
+    },
+    {
+     "title": "",
+     "url": "https://linear.app/docs/changes-to-linears-pricing-plans",
+     "snippet": "# Changes to Linear\u2019s pricing plans\n\n## We\u2019re moving all workspaces onto our current plans\n\nYour workspace started using Linear when we were focused on being a fast issue tracker. That speed isn\u2019t going anywhere, but Linear has changed a lot since then. We\u2019ve automated triage, enabled customer feedb",
+     "content": "# Changes to Linear\u2019s pricing plans\n\n## We\u2019re moving all workspaces onto our current plans\n\nYour workspace started using Linear when we were focused on being a fast issue tracker. That speed isn\u2019t going anywhere, but Linear has changed a lot since then. We\u2019ve automated triage, enabled customer feedback capture, introduced agents that help draft PRs and fix bugs, and more. Linear has grown into a full product development platform.\n\nYour current plan was designed before all of this existed. To make sure everyone can access these new capabilities, and to simplify our offerings, we\u2019re moving all workspaces onto our current plans.\n\n## What\u2019s changing\n\nWe\u2019re retiring our legacy plans (Plus and Standard) and moving all workspaces to one of our current plans: Basic, Business, or Enterprise.\n\nIf you\u2019re on Plus, your workspace will move to Business by default. If you\u2019re using advanced features like SAML, Advanced Asks, or Third-Party App Approvals, we recommend moving to Enterprise to keep them.\n\nIf you\u2019re on Standard, your workspace will move to Basic by default. If you\u2019re using features like triage responsibility, private teams, guest accounts, or support integrations, we recommend moving to Business to keep them.\n\nWhen your plan updates, you\u2019ll get access to our latest features like Customer Requests, Triage Intelligence, and the Linear Agent for Slack. You can see a full feature comparison in your billing settings.\n\n## Timeline\n\nAll migrations will happen at your next renewal after February 1, 2026. You can change your plan anytime before then. If you take no action, you\u2019ll move to your default plan automatically.\n\n## FAQ\n\nWhy can\u2019t I stay on my current plan?\nWe\u2019re moving all workspaces onto our current plan structure. Maintaining legacy plans adds complexity and limits our ability to ship new features consistently. More than that, we want the experience of Linear to be reflective of the product it is today, and in the future. Our current plans get access to our latest fe",
+     "provider": "exa"
+    },
+    {
+     "title": "Personal, Starter, Advanced, & Enterprise plans",
+     "url": "https://asana.com/pricing",
+     "snippet": "# Asana Pricing | Personal, Starter, Advanced, & Enterprise plans\n\n> Explore Asana's flexible pricing plans and find the right solution to help your team stay organized, connected, and on track.\n\nSource: https://asana.com/pricing\n\n#### Pick the plan that fits your team\n\nFor one or two people managin",
+     "content": "# Asana Pricing | Personal, Starter, Advanced, & Enterprise plans\n\n> Explore Asana's flexible pricing plans and find the right solution to help your team stay organized, connected, and on track.\n\nSource: https://asana.com/pricing\n\n#### Pick the plan that fits your team\n\nFor one or two people managing personal projects.\n\n- Sign up\n\n2 users\n\nUnlimited tasks and projects\n\nList, board, and calendar views\n\nUnlimited storage, 100MB max per file\n\nStatus updates\n\nTime tracking with integrations\n\n100+ free integrations\n\nFor growing teams that need to track their projects' progress and hit deadlines.\n\n- Sign up\n- Purchase now\n\nAI Studio Basic w/50K credits per billing account per month\n\nNo user seat limits\n\nTimeline and Gantt views\n\nReporting dashboards\n\nUnlimited automations\n\nForms\n\nCustom templates\n\nCustom fields\n\nUnlimited free guests\n\nFor companies that need to manage a portfolio of work and goals across departments.\n\n- Sign up\n- Purchase now\n\nAI Studio Basic w/75K credits per billing account per month\n\nUnlimited portfolios\n\nGoals\n\nWorkload\n\nApprovals and proofing\n\nSalesforce, Tableau, Power BI support\n\nConnect your project data with CRM and business intelligence tools, including Salesforce, Tableau, and Power BI, to get unified reporting and insights across all your workstreams,\n\nForms branching & customization\n\nTime tracking\n\nScaled security\n\nFormulas\n\nFor companies that need to coordinate and automate complex work across departments, without limits.\n\n- Contact sales\n\nAI Studio Basic w/200K credits per billing account per month\n\nSAML authentication\n\nUser provisioning (SCIM)\n\nUniversal workload\n\nCapacity planning\n\nService accounts\n\nView-only licenses\n\nGuest invite permissions\n\nProject admin controls\n\nAdmin announcements\n\nWorkflow bundles\n\nEnterprise+ plan available for increased security and compliance\n\n#### Compare all features\n\n| Feature | Personal | Starter | Advanced | Enterprise | Enterprise+ |\n| --- | --- | --- | --- | --- | --- |\n| Project management essentials | ",
+     "provider": "exa"
+    },
+    {
+     "title": "Asana pricing and purchases explained | Help Center",
+     "url": "https://help.asana.com/s/article/pricing-and-purchases?language=en_US",
+     "snippet": "Asana Help Center\n\nLoading\n\nAsana Help Center\nLoading\n[\u00d7](#)Sorry to interrupt\nCSS Error\n[Refresh](?)",
+     "content": "Loading\n\n[\u00d7](https://help.asana.com/s/article/pricing-and-purchases?language=en_US# \"Cancel and close\") Sorry to interrupt\n\nCSS Error\n\n[Refresh](https://help.asana.com/s/article/pricing-and-purchases?nocache=https%3A%2F%2Fhelp.asana.com%2Fs%2Farticle%2Fpricing-and-purchases%3Flanguage%3Den_US)\n\nt-antenna.asana.com\n\n# t-antenna.asana.com is blocked\n\nThis page has been blocked by an extension\n\n- Try disabling your extensions.\n\nERR\\_BLOCKED\\_BY\\_CLIENT\n\nReload\n\n\nThis page has been blocked by an extension\n\n![](<Base64-Image-Removed>)![](<Base64-Image-Removed>)\n\n[![](https://help.asana.com/resource/1725395696000/EC_AsanaLogoDots)](https://help.asana.com/s/article/asana.com)[Help Center](https://help.asana.com/s/)\n\n![search-icon](https://help.asana.com/resource/1725395696000/EC_Search_Icon)\n\nGet Asana Gov support\n\nGet support\n\n[Log in](https://help.asana.com/login)\n\n## Topics\n\n![[object Object]](https://help.asana.com/resource/1786550262000/EC_Topic_svgs/Gettingstarted.svg)Getting started\n\n### Intro to Asana\n\n- [You\u2019ve been invited to Asana; now what?](https://help.asana.com/s/article/you-ve-been-invited-to-asana-now-what)\n- [Getting started with Asana\u2019s mobile app](https://help.asana.com/s/article/getting-started-with-asana-s-mobile-app)\n- [How Asana works](https://help.asana.com/s/article/how-asana-works)\n- [Create projects in Asana](https://help.asana.com/s/article/create-projects-in-asana)\n- [Top features to discover](https://help.asana.com/s/article/top-features-to-discover)\n- [Different types of tasks](https://help.asana.com/s/article/different-types-of-tasks)\n- [How to use Asana help resources](https://help.asana.com/s/article/how-to-use-asana-help-resources)\n- [Quick-start guide to Asana](https://help.asana.com/s/article/quick-start-guide-to-asana)\n- [Create tasks in Asana](https://help.asana.com/s/article/create-tasks-in-asana)\n- [Collaborating in Asana](https://help.asana.com/s/article/collaborating-in-asana)\n- [All Asana features](https://help.asana.com/s/artic",
+     "provider": "firecrawl"
+    },
+    {
+     "title": "monday.com pricing and plans",
+     "url": "https://monday.com/pricing",
+     "snippet": "monday.com pricing and plans\n\n## Start free, no credit card needed.\n\n10 Seats\n\nFree\n\n$ 0 free forever\n\nUp to 2 seats\n\nAI features Available from Basic\n\nFree includes: \n\nUp to 3 boards\n\nBoards are the place for organizing all your work and data (e.g. projects, clients, processes).\n\nUp to 3 Docs\n\nCrea",
+     "content": "monday.com pricing and plans\n\n## Start free, no credit card needed.\n\n10 Seats\n\nFree\n\n$ 0 free forever\n\nUp to 2 seats\n\nAI features Available from Basic\n\nFree includes: \n\nUp to 3 boards\n\nBoards are the place for organizing all your work and data (e.g. projects, clients, processes).\n\nUp to 3 Docs\n\nCreate docs and collaborate with your team in real time. As your collaboration thrives, turn those words into actions with live updated data using monday.com Real Time Engine!\n\n200+ templates\n\n8 column types\n\nBuild your board the way you want with a variety of column types.\n\niOS and Android apps\n\nBasic\n\n$ 9 seat / month\n\nTotal of \n\nIncludes Free, plus:\n\n$ 12 seat / month\n\n- Agents take on specialized tasks and support multiple functions for automated execution at scale\n\nAI agent workforce\n- Notetaker keeps your team focused during meetings and turns conversations into actionable insights\n\nAI meeting notetaker\n- Sidekick is an intelligent context-aware AI assistant that understands, connects, and runs your work\n\nSidekick AI assistant\n- Turn any business need into a custom business app in minutes\n\n2 published vibe apps\n- AI columns run your repetitive work directly within your boards, so you can focus on your main priorities\n\nAI columns\n\nAutomations (250 actions / month)\n\nIntegrations (250 actions / month)\n\nTimeline & Gantt views\n\n$ 19 seat / month\n\n- Agents take on specialized tasks and support multiple functions for automated execution at scale\n\nAI agent workforce\n- Notetaker keeps your team focused during meetings and turns conversations into actionable insights\n\nAI meeting notetaker\n- Sidekick is an intelligent context-aware AI assistant that understands, connects, and runs your work\n\nSidekick AI assistant\n- Turn any business need into a custom business app in minutes\n\n3 published vibe apps\n- AI columns run your repetitive work directly within your boards, so you can focus on your main priorities\n\nAI columns\n- Orchestrate workflows that connect agents and AI and watch work ",
+     "provider": "exa"
+    },
+    {
+     "title": "Supercharge your teamwork.  Start free.",
+     "url": "https://monday.com/pricing?ps_partner_key=Y3JhaWdtdWxsaW5zMjAxNg&ps_xid=v128W8vFMuHNiK",
+     "snippet": "# monday.com\n\n> monday.com is the AI Work Platform where people and agents operate as one team to drive business results \u2014 with shared cross-department context, enterprise-grade trust, and an interface built for adoption at scale. It is a cloud-based, no-code platform to design and manage structured",
+     "content": "# monday.com\n\n> monday.com is the AI Work Platform where people and agents operate as one team to drive business results \u2014 with shared cross-department context, enterprise-grade trust, and an interface built for adoption at scale. It is a cloud-based, no-code platform to design and manage structured workflows, build custom business apps, deploy AI assistants and agents, automate cross-functional processes, and centralize execution across teams. Business applications include monday CRM, monday dev, and monday service, all powered by one AI layer (monday sidekick, monday agents, monday vibe, and AI workflows). Supports 200+ integrations and a GraphQL API. Data is organized as Workspaces, Folders, Boards, Groups, Items, and Subitems with 30+ column types. Key terms: Board, Item, Column, Group, Subitem, Workspace, Dashboard, Automation, Integration, Widget, Docs, View, Agent.\n\n## Operate on monday.com\n\n- Agent skill file: Technical reference for AI agents integrating with monday.com via MCP server (preferred) or GraphQL API (fallback). Covers authentication, tool reference for boards/items/workflows, rate limits, error handling, agent behavioral standards, acceptable use policy, and safety guidelines.\n- MCP server card: Machine-readable MCP discovery document (SEP-1649). Recommended integration method. Exposes the monday.com MCP server at https://mcp.monday.com/mcp via streamable HTTP with OAuth2 authentication.\n\n## Machine-Readable API Schema\n\n- GraphQL Schema (SDL)\n- GraphQL Schema (JSON)\n- Versioned Schema (2026-04)\n\n## Agent Account Setup\n\n- Agent signup - API: Recommended. Fully automated programmatic flow for creating a monday.com account for AI agents via API. Covers captcha challenge/verification, account creation, and returns an API token ready for the monday.com GraphQL API.\n- Agent signup - UI: Signup page for AI agents that need their own monday.com account. Covers browser-based signup with HATCHA verification (a reverse-CAPTCHA designed for agents, not huma",
+     "provider": "exa"
+    }
+   ]
+  },
+  "sso": {
+   "result": {
+    "caveats": [
+     "SAML SSO setup requires admin access and configuration with an identity provider; not all features apply to guests.",
+     "Plan names and exact availability may vary by account type (e.g., organization vs. division in Asana).",
+     "Sources confirm Enterprise-level restriction for full SAML but do not detail every lower-tier paid plan exhaustively."
+    ],
+    "findings": [
+     {
+      "entity": "Linear",
+      "sourceIds": [
+       "j970m4215dw7vx4qmy6r6157rd8e8fsq",
+       "j970qg8k93rk3gwt4pz47zmsa98e9jaj"
+      ],
+      "values": {
+       "SSO_type": "SAML (via Okta, Entra, OneLogin, LastPass, Auth0, Bitium, etc.) and Google SSO",
+       "offers_SSO": "yes",
+       "plan_availability": "SAML available only on Enterprise plan; Google SSO available more broadly"
+      }
+     },
+     {
+      "entity": "Asana",
+      "sourceIds": [
+       "j9785g9wxf1pdhggke7pa00rph8e9p09",
+       "j972d0q8eh5e348pqaawzbwqk18e9sk7"
+      ],
+      "values": {
+       "SSO_type": "SAML (via OneLogin, Okta, LastPass, Microsoft Entra, SecureAuth, Active Directory) and Google SSO",
+       "offers_SSO": "yes",
+       "plan_availability": "SAML available on Enterprise, Enterprise+, and Legacy Enterprise (for organizations or divisions); Google Sign-In available on paid plans (Starter, Advanced, Premium, Business) but not for divisions"
+      }
+     },
+     {
+      "entity": "Monday.com",
+      "sourceIds": [
+       "j970fefggre71pyqtqrtstt6ad8e8zjq",
+       "j979xcdrahgwg1mdjq24vtm9md8e9stf"
+      ],
+      "values": {
+       "SSO_type": "SAML (via Okta, Entra ID/Azure AD, OneLogin, or custom SAML 2.0) and Google SSO",
+       "offers_SSO": "yes",
+       "plan_availability": "SAML available only on Enterprise plan; Google SSO available on Pro and Enterprise plans"
+      }
+     }
+    ],
+    "summary": "Linear, Asana, and Monday.com all offer SAML-based SSO, which is restricted to their top-tier paid Enterprise plans. Lower-tier paid plans may offer Google SSO but not full SAML SSO."
+   },
+   "sources": [
+    {
+     "title": "SAML \u2013 Linear Docs",
+     "url": "https://linear.app/docs/saml-and-access-control",
+     "snippet": "# SAML\n\nCustomers can opt to enable SAML for their workspace to manage logins through an Identity Provider.\n\n> [!NOTE]\n> Available to workspaces on our Enterprise plan\n\n## Overview\n\nWe support most identity providers (Okta, Entra, OneLogin, LastPass, Auth0, Bitum, etc.)\n\nOnce SAML is enabled, member",
+     "content": "# SAML\n\nCustomers can opt to enable SAML for their workspace to manage logins through an Identity Provider.\n\n> [!NOTE]\n> Available to workspaces on our Enterprise plan\n\n## Overview\n\nWe support most identity providers (Okta, Entra, OneLogin, LastPass, Auth0, Bitum, etc.)\n\nOnce SAML is enabled, members on SAML-approved domains will be required to login via SAML by default, while you can allow other login types for users on other domains.\n\nUser sessions won't be logged out or notified at the time of enabling, but affected users will need to sign in with SAML from that point on.\n\nMembers can login via your identity provider's website or by clicking the option to Continue with SAML SSO on the login page.\n\nGuests who are invited directly to a workspace can sign in using email or another authentication method available to them. Authentication requirements differ for guests managed through an identity provider. Guests provisioned through SCIM must sign in using that provider; they cannot use email-based authentication to access the workspace.\n\nLogin method restrictions do not apply to guests invited directly to the workspace. Guests managed through an identity provider remain subject to that provider's authentication requirements.\n\n> [!NOTE]\n> Admins and Owners may be able to log in through other methods to prevent lockouts, depending on the workspace's authentication settings.\n\n## Configure\n\n1. Navigate to Settings > Administration > Security.\n2. Under the \"Authentication methods\" section, click Configure next to \"SAML & SCIM\".\n3. Enter the requested details from Linear into your IdP and press \"Continue\"\n4. You can paste in an XML URL or the raw XML text to complete the configuration with your identity provider. If you're not sure where to find this in your identity provider, take a look at their documentation or reach out to us for help.\n\nYou can make changes to your configuration later on from `...` > Edit Configuration within the SAML authentication & SCIM provisioning ",
+     "provider": "exa"
+    },
+    {
+     "title": "Security",
+     "url": "https://linear.app/security",
+     "snippet": "Security \u2013 Linear\n\n# Safe, secure, and private.\n\nEverything in Linear is designed to keep your work safe and secure. Because your business is nobody else\u2019s business.\n\n## Enterprise-grade security\n\nPeace of mind-as-a-service. Linear is built with best-in-class security practices to keep your work saf",
+     "content": "Security \u2013 Linear\n\n# Safe, secure, and private.\n\nEverything in Linear is designed to keep your work safe and secure. Because your business is nobody else\u2019s business.\n\n## Enterprise-grade security\n\nPeace of mind-as-a-service. Linear is built with best-in-class security practices to keep your work safe and secure at every layer. This includes state-of-the-art encryption, safe and reliable infrastructure partners, and independently verified security controls.\n\n#### SOC 2 compliance\n\nLinear undergoes regular Service Organization Controls audits (SOC 2 Type II). Request SOC 2 \u2192\n\n#### GDPR compliance\n\nCommitted to compliance with Europe\u2019s General Data Protection Regulation (GDPR).\n\n#### HIPAA compliance\n\nPrivacy and security measures to ensure that Protected Health Information (PHI) is appropriately safeguarded. Request BAA \u2192\n\n#### ISO 27001 certified\n\nLinear has achieved ISO/IEC 27001:2022 certification for its information security management system. Request ISO \u2192\n\n#### App approvals\n\nControl which third-party applications have access to your Linear workspace.\n\n#### Audit logs\n\nAudit logs automatically keep track of important workspace events over the last 3 months.\n\n#### Admin controls\n\nRestrict access to system-level privileges.\n\n## Identity management\n\nKeep an eye on your work. And keep other eyes out. Linear offers multiple ways to login as well as options to restrict login methods for added security.\n\n#### Single sign-on (SSO)\n\nAuthenticate into Linear using Google SSO or login via email with email codes.\n\n#### Passkeys\n\nSecure and fast login without having to rely on passwords.\n\n#### SAML\n\nLinear offers SAML via most identity providers (Okta, OneLogin, LastPass, Auth0, Bitium, and more).\n\n#### SCIM\n\nProvision and deprovision users in Linear through your identity provider.\n\n#### Domain claiming\n\nAdd an extra layer of security and keep your teammates in the right workspace.\n\n#### Login restrictions\n\nRestrict login to specific methods for added security (Google SSO or",
+     "provider": "exa"
+    },
+    {
+     "title": "Asana authentication: passwords, SSO & SAML | Help Center",
+     "url": "https://help.asana.com/s/article/authentication-and-access-management-options-for-paid-plans?language=en_US",
+     "snippet": "Asana authentication: passwords, SSO & SAML | Help Center\n\nLoading\n\nGet Asana Gov support\n\nGet support\n\n# Authentication and access management options for paid plans\n\nIn This Article\n\n- Password strength and force password reset\n- Google Sign-In\n- SAML\n- Audit log details for failed SAML logins\n- SA",
+     "content": "Asana authentication: passwords, SSO & SAML | Help Center\n\nLoading\n\nGet Asana Gov support\n\nGet support\n\n# Authentication and access management options for paid plans\n\nIn This Article\n\n- Password strength and force password reset\n- Google Sign-In\n- SAML\n- Audit log details for failed SAML logins\n- SAML session timeout\n- Public certificate\n- Two-factor authentication\n\n##### Who can use this feature?\n\nStarterAdvancedEnterpriseEnterprise+PremiumBusinessLegacy Enterprise\n\nVisit our pricing page for more information.\n\nBy default, Asana's regular authentication steps apply, and your organization members have the choice to either use a traditional password or Google SSO to log into their respective accounts.\n\nIn paid organizations, super admins can select how their members log into Asana, set password complexity requirements and force reset all members' passwords. If you purchase a division plan on Enterprise, Enterprise+, then SAML can also be enabled. SAML can also be enabled for divisions on the Legacy Enterprise tier.\n\nPaid authentication settings only apply to your organization members. Organization guests are not affected by your authentication settings.\n\nLike what you see? Get started with a free Asana trial today. Try for free.\n\n## Password strength and force password reset\n\nCheck out this article to find out how to update password strength requirements and force a password reset for your organization.\n\n## Google Sign-In\n\nIf your company uses Google Workspace for business or education, and you are using a paid version of Asana, you have the option to require your members to authenticate via Google.\n\nNote\n\nYou can't set up Google Sign-In if you are on a Division Plan.\n\nTo change your organization to Google Sign-In, navigate to the Security tab in the admin console. From here, go to the Global authentication settings and click Google sign-in. Select Required for all members, except guests and click Save changes.\n\nOnce this change has been saved, any passwords associat",
+     "provider": "exa"
+    },
+    {
+     "title": "How to manage global authentication settings | Asana Help Center",
+     "url": "https://help.asana.com/s/article/global-authentication-settings",
+     "snippet": "Asana global authentication settings | Help Center\n\n# Global authentication settings\n\nIn This Article\n\n- Google sign-in\n- SAML authentication\n- SAML session timeout\n\n##### Who can use this feature?\n\nThis article explains two key authentication methods that organizations can implement to streamline a",
+     "content": "Asana global authentication settings | Help Center\n\n# Global authentication settings\n\nIn This Article\n\n- Google sign-in\n- SAML authentication\n- SAML session timeout\n\n##### Who can use this feature?\n\nThis article explains two key authentication methods that organizations can implement to streamline access and enhance security: Google sign-in and SAML.\n\n## Google sign-in\n\nGoogle sign-in is available for paid organizations, and is not supported for paid divisions. Super admins must first log in with their Google account in order to enable Google SSO. If you logged in with email and password, simply log out and in again using the blue Use Google Account button instead.\n\n#### From the Security tab:\n\n1. Navigate to Global authentication settings\n2. Click Google sign-in\n3. Set Google Sign-in as either Optional or Required for all members, except guests\n4. Once you've chosen an option, click Save changes\n\n> Note \n> \n> Organization guests can always login with email and password, regardless of whether Google SSO is required for members or not.\n\n## SAML authentication\n\nAsana Enterprise and Enterprise+ organizations, as well as organizations on legacy tier Legacy Enterprise can enable SAML from the security tab of their admin console.\n\n#### From the Security tab:\n\n1. Navigate to Global authentication settings\n2. Click SAML authentication\n\n## SAML session timeout\n\nSuper admins can set SAML session timeout between 1 hour and 30 days in the admin console. Members will be automatically logged out and asked to log in again after the specified timeout set.",
+     "provider": "exa"
+    },
+    {
+     "title": "SAML Single Sign-on - Support - Monday.com",
+     "url": "https://support.monday.com/hc/en-us/articles/360000460605-SAML-Single-Sign-on",
+     "snippet": "SAML Single Sign-on \u2013 Support\n\n# SAML Single Sign-on\n\nSecurity Assertion Markup Language (SAML) provides your team with secure access to monday.com (SP) through the identity provider (IdP) of your choice. It works by transferring a team member\u2019s identity from one place, your identity provider, to an",
+     "content": "SAML Single Sign-on \u2013 Support\n\n# SAML Single Sign-on\n\nSecurity Assertion Markup Language (SAML) provides your team with secure access to monday.com (SP) through the identity provider (IdP) of your choice. It works by transferring a team member\u2019s identity from one place, your identity provider, to another, monday.com. You can enable SAML in monday.com in just a few steps.\n\n Note: SAML SSO is available on Enterprise plan only. Google Single Sign-On is available on Pro and Enterprise plans. To learn more about Google Single Sign-On, see here. \n\n# Configure your identity provider\n\nBefore setting up SAML SSO in monday.com, you must first set up a monday.com SSO connection, also known as a connector, with your identity provider. monday.com currently supports three main providers: Okta, Entra ID (formerly Azure AD), and OneLogin. You can also use a custom provider.\n\n- To enable SAML with Okta, see the relevant article. \n- To enable SAML using OneLogin, see the relevant article. \n- Entra ID (previously Azure AD), see the relevant article. \n- To enable SAML using custom SAML 2.0, see the relevant article.\n\n \n\n Note: By default, you can connect one identity provider to a monday.com account. If your account has the Enterprise Guardian add-on, you can configure multiple SSO vendors within the same account. Multiple monday.com accounts can also be connected to one identity provider. \n\nNow that you've completed this step, you can log in to your monday.com account to continue setting up SAML SSO. Follow the steps below to proceed.\n\n# Set up SAML SSO for monday.com\n\nOnce you've configured your identity provider, you just need to enable SAML on monday.com. To do so, click your profile picture in the top-right corner of your screen, then select Administration.\n\nOnce you are in the admin section, select the Security section on the left side. Click Single Sign-On (SSO) in the Authentication policies tab. Then click Add SSO policy. We will use Okta in our example, but you can select any",
+     "provider": "exa"
+    },
+    {
+     "title": "How to connect to SSO - Monday Partner Hub",
+     "url": "https://partners.monday.com/connect-sso-guide/",
+     "snippet": "How to connect to SSO - Monday Partner Hub\n\n# How to connect to SSO\n\nmonday SSO (link) summary:monday.com supports several single-sign-on methods, in the following link we describe how an account can create their own custom SAML2 SSO. Additional guides exist to establish Google SSO, ADFS and Azure.\n",
+     "content": "How to connect to SSO - Monday Partner Hub\n\n# How to connect to SSO\n\nmonday SSO (link) summary:monday.com supports several single-sign-on methods, in the following link we describe how an account can create their own custom SAML2 SSO. Additional guides exist to establish Google SSO, ADFS and Azure.\n\nSalesForce SSO (link) summary:Salesforce boasts a wide array of SSO support, ranging from creating a dedicates SSO to using your Salesforce account to be the identity provider to your service providers (or both!). Enter this link to redirect to the detailed Salesforce guide.\n\ninSided SSO (link) summary:inSided community platform is used by monday.com partners to collaborate and engage with each-other and their monday collaboration team. inSided boasts SSO solutions such as OAuth2, SAML2, Facebook and JWT.\n\nLessonly LMS SSO (link) summary:Lessonly LMS is the main training platform for monday partners, and is used for issuing certificates and training on new features. Leasonly supports SAML2, Google SSO, ADFS and Azure. Enter this link for a short guide on connecting Lessonly to your SSO.\n\n### Copyright \u00a9 2026. All rights reserved.",
+     "provider": "exa"
+    }
+   ]
+  }
+ },
+ "brief": {
+  "content": {
+   "comparison": [
+    {
+     "competitor": "Linear",
+     "entryPlan": "Basic",
+     "price": "$10 per user/month (billed yearly)",
+     "sso": "SAML on Enterprise only"
+    },
+    {
+     "competitor": "Asana",
+     "entryPlan": "Starter",
+     "price": "not found",
+     "sso": "SAML on Enterprise only"
+    },
+    {
+     "competitor": "Monday",
+     "entryPlan": "Basic",
+     "price": "$9 per seat/month (billed annually)",
+     "sso": "SAML on Enterprise only"
+    }
+   ],
+   "executiveSummary": "Linear's cheapest paid plan is Basic at $10 per user/month (billed yearly). Asana's cheapest paid plan is Starter with pricing not found. monday.com's cheapest paid plan is Basic at $9 per seat/month (billed annually). All three offer SAML SSO exclusively on Enterprise plans, with Google SSO available on some lower-tier paid plans.",
+   "headline": "Competitor Brief: Linear, Asana, and monday.com",
+   "recommendation": "monday.com offers the lowest entry price at $9/seat while Linear is positioned at a $10/user premium; all require upgrading to Enterprise for SAML SSO.",
+   "sourceIds": [
+    "j9778dvebxpjda8y0xr9cbfmv98e9vnq",
+    "j978y65n073kpyqwst3azrsb0s8e800z",
+    "j97ak8en53292sz4wpakkvp13h8e8yd7",
+    "j970m4215dw7vx4qmy6r6157rd8e8fsq",
+    "j970qg8k93rk3gwt4pz47zmsa98e9jaj",
+    "j9785g9wxf1pdhggke7pa00rph8e9p09",
+    "j972d0q8eh5e348pqaawzbwqk18e9sk7",
+    "j970fefggre71pyqtqrtstt6ad8e8zjq",
+    "j979xcdrahgwg1mdjq24vtm9md8e9stf"
+   ]
+  }
+ }
+}

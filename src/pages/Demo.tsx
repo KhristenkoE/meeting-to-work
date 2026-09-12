@@ -1,5 +1,5 @@
 import { useQuery } from 'convex/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { ListChecks, MessageSquareText, RotateCcw } from 'lucide-react'
 import { Link, useParams } from 'react-router'
 import { api } from '../../convex/_generated/api'
@@ -22,6 +22,13 @@ export default function Demo() {
   const showResults = meeting?.status === 'completed' && !!items?.length && !items.some((i) => STATUS[i.status].active)
   const [selectedId, setSelectedId] = useState<Id<'workItems'> | null>(null)
   const selected = items?.find((i) => i._id === selectedId)
+  const loading = meeting === undefined || chunks === undefined || items === undefined
+  const [timedOut, setTimedOut] = useState(false)
+  useEffect(() => {
+    if (!loading) return
+    const t = setTimeout(() => setTimedOut(true), 10000)
+    return () => clearTimeout(t)
+  }, [loading])
 
   return (
     <div className="min-h-screen bg-base-100">
@@ -49,7 +56,14 @@ export default function Demo() {
           </StartDemoButton>
         </nav>
       </header>
-      {meeting === null ? (
+      {loading && timedOut ? (
+        <main className="mx-auto max-w-md p-16">
+          <div role="alert" className="alert alert-error">
+            <span>Could not connect to the backend.</span>
+            <Link to="/" className="btn btn-sm">Back home</Link>
+          </div>
+        </main>
+      ) : meeting === null ? (
         <main className="mx-auto max-w-md p-16 text-center">
           <h2 className="text-2xl font-semibold">Meeting not found</h2>
           <p className="mt-2 text-base-content/55">This meeting doesn't exist or was removed.</p>
@@ -89,7 +103,11 @@ export default function Demo() {
                 </div>
               ) : items.length === 0 ? (
                 <p className="flex items-center gap-2 text-base-content/55">
-                  {meeting?.status === 'running' ? (
+                  {meeting?.lastError ? (
+                    <span role="alert" className="alert alert-warning alert-soft">
+                      Work detection is failing: {meeting.lastError}. Replay to try again.
+                    </span>
+                  ) : meeting?.status === 'running' ? (
                     <>
                       Listening for work… <span className="loading loading-dots loading-sm text-primary" />
                     </>

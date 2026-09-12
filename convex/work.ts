@@ -92,11 +92,11 @@ export const insertArtifact = internalMutation({
 })
 
 export const completeItem = internalMutation({
-  args: { workItemId: v.id('workItems'), result: v.any(), message: v.string() },
-  handler: async (ctx, { workItemId, result, message }) => {
+  args: { workItemId: v.id('workItems'), result: v.any(), message: v.string(), status: v.optional(v.literal('fallback_used')) },
+  handler: async (ctx, { workItemId, result, message, status = 'completed' as const }) => {
     const item = (await ctx.db.get(workItemId))!
-    await ctx.db.patch(workItemId, { result, status: 'completed' })
-    await ctx.db.insert('workEvents', { workItemId, type: 'completed', message, createdAt: Date.now() })
+    await ctx.db.patch(workItemId, { result, status })
+    await ctx.db.insert('workEvents', { workItemId, type: status, message, createdAt: Date.now() })
     await resolveDependencies(ctx, item.meetingId)
   },
 })
@@ -106,7 +106,7 @@ async function resolveDependencies(ctx: MutationCtx, meetingId: Id<'meetings'>) 
     .query('workItems')
     .withIndex('by_meeting', (q) => q.eq('meetingId', meetingId))
     .collect()
-  const done = new Set(items.filter((i) => i.status === 'completed').map((i) => i._id))
+  const done = new Set(items.filter((i) => i.status === 'completed' || i.status === 'fallback_used').map((i) => i._id))
   for (const item of items) {
     if (item.status !== 'waiting_dependency' || !item.dependencyIds.every((d) => done.has(d))) continue
     await ctx.db.patch(item._id, { status: 'queued' })
@@ -128,6 +128,11 @@ export const detectionContext = internalQuery({
       .withIndex('by_meeting', (q) => q.eq('meetingId', meetingId))
       .collect(),
   }),
+})
+
+export const setMeetingError = internalMutation({
+  args: { meetingId: v.id('meetings'), lastError: v.optional(v.string()) },
+  handler: (ctx, { meetingId, lastError }) => ctx.db.patch(meetingId, { lastError }),
 })
 
 export const setStatus = internalMutation({
@@ -176,8 +181,11 @@ export const insertWorkItems = internalMutation({
     const known = [...existing]
     for (const { dependsOnTitles, ...item } of items) {
       if (known.some((k) => k.fingerprint === item.fingerprint)) continue
-      const deps = known.filter((k) => dependsOnTitles.some((t) => overlap(t, k.title) >= 0.5))
-      const unmet = deps.some((d) => d.status !== 'completed')
+      const deps =
+        item.kind === 'artifact'
+          ? known.filter((k) => k.kind === 'research')
+          : known.filter((k) => dependsOnTitles.some((t) => overlap(t, k.title) >= 0.5))
+      const unmet = deps.some((d) => d.status !== 'completed' && d.status !== 'fallback_used')
       const status =
         item.executorType === 'human'
           ? 'assigned'
@@ -207,6 +215,12 @@ export const insertWorkItems = internalMutation({
       }
       if (status === 'queued' && item.kind === 'research') await ctx.scheduler.runAfter(0, internal.research.runResearch, { workItemId })
       if (status === 'queued' && item.kind === 'artifact') await ctx.scheduler.runAfter(0, internal.brief.buildBrief, { workItemId })
+      if (item.kind === 'research')
+        for (const k of known)
+          if (k.kind === 'artifact' && k.status === 'waiting_dependency') {
+            k.dependencyIds = [...k.dependencyIds, workItemId]
+            await ctx.db.patch(k._id, { dependencyIds: k.dependencyIds })
+          }
       known.push((await ctx.db.get(workItemId))!)
     }
   },

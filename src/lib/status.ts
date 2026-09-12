@@ -17,7 +17,7 @@ export const STATUS: Record<WorkStatus, { label: string; badgeClass: string; act
   assigned: { label: 'Assigned', badgeClass: 'badge-secondary', active: false },
   completed: { label: 'Completed', badgeClass: 'badge-success', active: false },
   failed: { label: 'Failed', badgeClass: 'badge-error', active: false },
-  fallback_used: { label: 'Fallback used', badgeClass: 'badge-warning', active: false },
+  fallback_used: { label: 'Completed (cached)', badgeClass: 'badge-warning', active: false },
 }
 
 export const EXECUTOR: Record<WorkItem['executorType'], { label: string; badgeClass: string; Icon: LucideIcon }> = {
