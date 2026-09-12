@@ -1,5 +1,5 @@
 import { ArrowRight, Sparkles } from 'lucide-react'
-import { Link } from 'react-router'
+import StartDemoButton from '../StartDemoButton.tsx'
 
 export default function Hero() {
   return (
@@ -22,9 +22,9 @@ export default function Hero() {
           Most meeting assistants tell you what happened. Meeting2Work starts doing what happens next.
         </p>
         <div className="mt-10 flex items-center gap-3">
-          <Link to="/demo/placeholder" className="btn btn-primary btn-lg shadow-lg shadow-primary/30">
+          <StartDemoButton className="btn btn-primary btn-lg shadow-lg shadow-primary/30">
             Experience sample meeting <ArrowRight size={20} />
-          </Link>
+          </StartDemoButton>
           <a href="#how" className="btn btn-ghost btn-lg text-base-content/70">See how it works</a>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import { Zap } from 'lucide-react'
 import { Link } from 'react-router'
+import StartDemoButton from '../StartDemoButton.tsx'
 
 export function Wordmark() {
   return (
@@ -23,7 +24,7 @@ export default function Nav() {
           <a href="https://github.com/KhristenkoE/meeting-to-work" target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm">
             GitHub
           </a>
-          <Link to="/demo/placeholder" className="btn btn-primary btn-sm">Try the demo</Link>
+          <StartDemoButton className="btn btn-primary btn-sm">Try the demo</StartDemoButton>
         </div>
       </nav>
     </header>
