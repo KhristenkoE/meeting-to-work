@@ -4,16 +4,13 @@
 
 An AI execution layer for meetings: it listens to a conversation, detects work, routes each item to AI, a human, or an approval gate, and starts safe AI work immediately.
 
-[Live demo](https://meeting2work.onrender.com/) · [Video (3 min)](TODO) · [Repo](https://github.com/KhristenkoE/meeting-to-work)
-
-Built solo in one day at the [Cursor Serbia Hackathon](https://hackathon.cursorserbia.com), Sep 12 2026.
+[Live demo](https://meeting2work.onrender.com/) · [Repo](https://github.com/KhristenkoE/meeting-to-work)
 
 ![Meeting2Work demo: transcript on the left, work cards executing on the right](public/screenshot.png)
-<!-- Evgenii: drop the screenshot at public/screenshot.png -->
 
 ## What it does
 
-- **Listens.** A meeting transcript arrives line by line (server-replayed sample meeting today; the same path accepts live speech-to-text later).
+- **Listens.** A meeting transcript arrives line by line (server-replayed sample meeting; the same path accepts live speech-to-text).
 - **Detects work, not discussion.** After every line, Grok (x.ai) extracts new work items as structured output: title, class, kind, owner, due date, dependencies, verbatim trigger quotes, and a reason.
 - **Routes each item.** Safe informational work goes to AI right away, personal commitments become human tasks with owner and due date, external side effects wait behind an approval gate. A deterministic policy overrides the model whenever it proposes something unsafe as auto-run.
 - **Executes research with real sources.** Exa finds official pricing and security pages, Firecrawl extracts them, Grok synthesizes findings with source ids. Every source URL is kept and shown.
@@ -99,7 +96,7 @@ Scripts: `npm run dev` · `npm run build` · `npm run typecheck` (app, node and 
 
 `render.yaml` is a Render Blueprint for a static site: build `npx convex deploy --cmd 'npm run build'`, publish `dist`, SPA rewrite `/* → /index.html`. Set `CONVEX_DEPLOY_KEY` (Convex production deploy key) in the Render dashboard; the same build pushes the Convex functions and the frontend.
 
-## Built today
+## What's implemented
 
 - Landing page and demo page with realtime transcript, work cards, card details, brief view, approval card, results summary and replay.
 - Server-side replay of the sample meeting via the Convex scheduler; refresh-safe and safe for many simultaneous viewers.
@@ -109,7 +106,7 @@ Scripts: `npm run dev` · `npm run build` · `npm run typecheck` (app, node and 
 - Per-item explainability: trigger quotes, reason, execution timeline.
 - Public deploy on Render with Convex production backend.
 
-## Not built / fallback
+## Fallbacks and stretch
 
 - When a provider errors or hits the 20 s timeout, the item falls back to a cached snapshot from an earlier real run (`convex/fallback.json`) and is shown with status `fallback_used` and the message "Live providers failed … showing cached results from an earlier run". If no snapshot matches, the item shows `failed` with the error. Never an infinite spinner.
 - Approving the send records the decision; no messaging integration is connected, and the card says so.
@@ -118,4 +115,4 @@ Scripts: `npm run dev` · `npm run build` · `npm run typecheck` (app, node and 
 
 ## Vision
 
-Meetings already produce the work; today a person has to carry it out of the room by hand. Meeting2Work is the execution layer that sits after any transcript source, live or recorded, and dispatches: research and drafting agents start during the call, personal commitments land as tasks in Linear, Jira or Asana, and messages, deploys and payments are prepared but stopped at an approval gate. Approvals are the trust boundary that lets agents act on real systems without anyone losing control. The same router can hand items to engineering, analytics or sales agents with the meeting context attached, so by the time the call ends, the first round of work is already done.
+Meetings already produce the work; a person still has to carry it out of the room by hand. Meeting2Work is the execution layer that sits after any transcript source, live or recorded, and dispatches: research and drafting agents start during the call, personal commitments land as tasks in Linear, Jira or Asana, and messages, deploys and payments are prepared but stopped at an approval gate. Approvals are the trust boundary that lets agents act on real systems without anyone losing control. The same router can hand items to engineering, analytics or sales agents with the meeting context attached, so by the time the call ends, the first round of work is already done.
