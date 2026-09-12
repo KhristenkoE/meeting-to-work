@@ -19,7 +19,7 @@ export default function Hero() {
           </span>
         </h1>
         <p className="mt-7 max-w-2xl text-xl leading-relaxed text-base-content/65">
-          Ever finished a meeting, reread the transcript, and then done every action item yourself or handed it to an agent by hand? Meeting2Work listens as you talk, picks out the work, runs the research and drafts itself, assigns tasks to people, and asks you before anything is sent.
+          Stop rereading transcripts and doing the action items yourself. Meeting2Work picks out the work as you talk, does the safe parts, assigns the rest, and asks before anything is sent.
         </p>
         <StartDemoButton className="btn btn-primary btn-lg mt-10 shadow-lg shadow-primary/30">
           Experience sample meeting <ArrowRight size={20} />
