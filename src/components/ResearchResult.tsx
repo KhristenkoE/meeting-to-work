@@ -5,11 +5,11 @@ export default function ResearchResult({ result, sources }: { result: Result; so
   const columns = [...new Set(result.findings.flatMap((f) => Object.keys(f.values)))]
   const index = new Map(sources.map((s, i) => [s._id as string, i]))
   return (
-    <div className="mt-2 space-y-3">
-      <p className="text-sm text-base-content/80">{result.summary}</p>
-      <div className="overflow-x-auto rounded-box border border-base-300/60">
+    <div>
+      <p className="mb-3 text-sm text-base-content/80">{result.summary}</p>
+      <div className="overflow-x-auto rounded-lg border border-base-300/60">
         <table className="table table-sm">
-          <thead>
+          <thead className="bg-base-200">
             <tr>
               <th>Entity</th>
               {columns.map((c) => (
@@ -31,13 +31,7 @@ export default function ResearchResult({ result, sources }: { result: Result; so
                   {f.sourceIds.map((id) => {
                     const i = index.get(id)
                     return i === undefined ? null : (
-                      <a
-                        key={id}
-                        href={sources[i].url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="badge badge-ghost badge-xs mr-1 font-mono"
-                      >
+                      <a key={id} href={sources[i].url} target="_blank" rel="noreferrer" className="badge badge-ghost badge-xs mr-1 font-mono">
                         {i + 1}
                       </a>
                     )
@@ -49,11 +43,17 @@ export default function ResearchResult({ result, sources }: { result: Result; so
         </table>
       </div>
       {result.caveats.length > 0 && (
-        <ul className="list-disc space-y-0.5 pl-5 text-xs text-base-content/60">
-          {result.caveats.map((c) => (
-            <li key={c}>{c}</li>
-          ))}
-        </ul>
+        <div className="collapse collapse-arrow mt-3 border border-base-300/60 bg-base-200/40">
+          <input type="checkbox" />
+          <div className="collapse-title min-h-0 py-2 text-xs font-medium text-base-content/60">Caveats ({result.caveats.length})</div>
+          <div className="collapse-content">
+            <ul className="list-disc space-y-0.5 pl-5 text-xs text-base-content/60">
+              {result.caveats.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
       )}
     </div>
   )
