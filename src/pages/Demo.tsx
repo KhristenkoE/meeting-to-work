@@ -50,9 +50,9 @@ export default function Demo() {
                   <span className="badge badge-success badge-outline badge-sm">Completed</span>
                 )}
                 {speakers.map((name) => (
-                  <span key={name} className="flex items-center gap-1.5 text-sm text-base-content/70">
-                    <span className="avatar avatar-placeholder">
-                      <span className="w-6 rounded-full bg-primary/20 text-xs font-semibold text-primary">{name[0]}</span>
+                  <span key={name} className="inline-flex items-center gap-1.5 text-sm text-base-content/70">
+                    <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/20 text-xs font-semibold leading-none text-primary">
+                      {name[0]}
                     </span>
                     {name}
                   </span>
