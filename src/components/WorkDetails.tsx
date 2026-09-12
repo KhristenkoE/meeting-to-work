@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useQuery } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import { EXECUTOR, STATUS, type WorkItem } from '../lib/status.ts'
@@ -6,12 +7,17 @@ export default function WorkDetails({ item, onClose }: { item: WorkItem; onClose
   const events = useQuery(api.work.listEvents, { workItemId: item._id })
   const exec = EXECUTOR[item.executorType]
   const status = STATUS[item.status]
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [onClose])
   return (
-    <dialog className="modal modal-open" onClose={onClose}>
+    <dialog className="modal modal-open">
       <div className="modal-box max-w-2xl border border-base-300/60 bg-base-200">
-        <form method="dialog">
-          <button className="btn btn-circle btn-ghost btn-sm absolute top-3 right-3">✕</button>
-        </form>
+        <button type="button" onClick={onClose} className="btn btn-circle btn-ghost btn-sm absolute top-3 right-3" aria-label="Close">
+          ✕
+        </button>
         <div className="flex flex-wrap items-center gap-2">
           <span className={`badge badge-sm gap-1 ${exec.badgeClass}`}>
             <exec.Icon size={12} /> {exec.label}
@@ -69,9 +75,7 @@ export default function WorkDetails({ item, onClose }: { item: WorkItem; onClose
           </div>
         )}
       </div>
-      <form method="dialog" className="modal-backdrop">
-        <button>close</button>
-      </form>
+      <button type="button" className="modal-backdrop" onClick={onClose} />
     </dialog>
   )
 }
