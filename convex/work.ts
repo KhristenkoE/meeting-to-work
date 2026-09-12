@@ -1,4 +1,5 @@
 import { v } from 'convex/values'
+import { internal } from './_generated/api'
 import { internalMutation, internalQuery, query } from './_generated/server'
 import { overlap } from './policy'
 import { workStatus } from './schema'
@@ -19,6 +20,49 @@ export const listEvents = query({
       .query('workEvents')
       .withIndex('by_workItem', (q) => q.eq('workItemId', workItemId))
       .collect(),
+})
+
+export const listSources = query({
+  args: { workItemId: v.id('workItems') },
+  handler: (ctx, { workItemId }) =>
+    ctx.db
+      .query('sources')
+      .withIndex('by_workItem', (q) => q.eq('workItemId', workItemId))
+      .collect(),
+})
+
+export const getWorkItem = internalQuery({
+  args: { workItemId: v.id('workItems') },
+  handler: (ctx, { workItemId }) => ctx.db.get(workItemId),
+})
+
+export const insertSources = internalMutation({
+  args: {
+    sources: v.array(
+      v.object({
+        workItemId: v.id('workItems'),
+        title: v.string(),
+        url: v.string(),
+        snippet: v.optional(v.string()),
+        content: v.optional(v.string()),
+        provider: v.union(v.literal('exa'), v.literal('firecrawl')),
+      }),
+    ),
+  },
+  handler: (ctx, { sources }) => Promise.all(sources.map((s) => ctx.db.insert('sources', s))),
+})
+
+export const updateSource = internalMutation({
+  args: { sourceId: v.id('sources'), content: v.string(), provider: v.union(v.literal('exa'), v.literal('firecrawl')) },
+  handler: (ctx, { sourceId, ...patch }) => ctx.db.patch(sourceId, patch),
+})
+
+export const completeItem = internalMutation({
+  args: { workItemId: v.id('workItems'), result: v.any(), message: v.string() },
+  handler: async (ctx, { workItemId, result, message }) => {
+    await ctx.db.patch(workItemId, { result, status: 'completed' })
+    await ctx.db.insert('workEvents', { workItemId, type: 'completed', message, createdAt: Date.now() })
+  },
 })
 
 export const detectionContext = internalQuery({
@@ -111,6 +155,7 @@ export const insertWorkItems = internalMutation({
           createdAt: now + 1,
         })
       }
+      if (status === 'queued' && item.kind === 'research') await ctx.scheduler.runAfter(0, internal.research.runResearch, { workItemId })
       known.push((await ctx.db.get(workItemId))!)
     }
   },

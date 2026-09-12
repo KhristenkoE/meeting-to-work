@@ -2,11 +2,15 @@ import { useEffect } from 'react'
 import { useQuery } from 'convex/react'
 import { api } from '../../convex/_generated/api'
 import { EXECUTOR, STATUS, type WorkItem } from '../lib/status.ts'
+import ResearchResult from './ResearchResult.tsx'
+import SourceList from './SourceList.tsx'
 
 export default function WorkDetails({ item, onClose }: { item: WorkItem; onClose: () => void }) {
   const events = useQuery(api.work.listEvents, { workItemId: item._id })
+  const sources = useQuery(api.work.listSources, { workItemId: item._id })
   const exec = EXECUTOR[item.executorType]
   const status = STATUS[item.status]
+  const showSources = item.kind === 'research' && (status.active || (sources?.length ?? 0) > 0)
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
@@ -22,7 +26,10 @@ export default function WorkDetails({ item, onClose }: { item: WorkItem; onClose
           <span className={`badge badge-sm gap-1 ${exec.badgeClass}`}>
             <exec.Icon size={12} /> {exec.label}
           </span>
-          <span className={`badge badge-sm badge-outline ${status.badgeClass}`}>{status.label}</span>
+          <span className={`badge badge-sm badge-outline ${status.badgeClass}`}>
+            {status.label}
+            {status.active && <span className="loading loading-dots loading-xs" />}
+          </span>
         </div>
         <h3 className="mt-2 text-lg font-semibold">{item.title}</h3>
         <p className="text-sm text-base-content/60">{item.description}</p>
@@ -40,6 +47,32 @@ export default function WorkDetails({ item, onClose }: { item: WorkItem; onClose
           <progress className="progress progress-primary w-40" value={item.confidence} max={1} />
           {Math.round(item.confidence * 100)}% confidence
         </div>
+
+        {item.status === 'failed' && events?.length ? (
+          <div role="alert" className="alert alert-error alert-soft mt-5 text-sm">
+            {events[events.length - 1].message}
+          </div>
+        ) : null}
+
+        {item.result !== undefined && (
+          <>
+            <h4 className="mt-5 text-xs font-semibold uppercase tracking-wide text-base-content/50">Result</h4>
+            {item.kind === 'research' ? (
+              <ResearchResult result={item.result} sources={sources ?? []} />
+            ) : (
+              <pre className="mt-2 overflow-x-auto rounded-box bg-base-300/40 p-3 text-xs">
+                {JSON.stringify(item.result, null, 2)}
+              </pre>
+            )}
+          </>
+        )}
+
+        {showSources && (
+          <>
+            <h4 className="mt-5 text-xs font-semibold uppercase tracking-wide text-base-content/50">Sources</h4>
+            <SourceList sources={sources} />
+          </>
+        )}
 
         <h4 className="mt-5 text-xs font-semibold uppercase tracking-wide text-base-content/50">Timeline</h4>
         {events === undefined ? (
@@ -63,16 +96,6 @@ export default function WorkDetails({ item, onClose }: { item: WorkItem; onClose
               </li>
             ))}
           </ul>
-        )}
-
-        {item.result !== undefined && (
-          <div className="collapse-arrow collapse mt-5 border border-base-300/60 bg-base-300/40">
-            <input type="checkbox" />
-            <div className="collapse-title text-sm font-medium">Result</div>
-            <div className="collapse-content">
-              <pre className="overflow-x-auto text-xs">{JSON.stringify(item.result, null, 2)}</pre>
-            </div>
-          </div>
         )}
       </div>
       <button type="button" className="modal-backdrop" onClick={onClose} />
