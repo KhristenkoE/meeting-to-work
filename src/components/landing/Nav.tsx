@@ -24,6 +24,9 @@ export default function Nav() {
           <a href="https://github.com/KhristenkoE/meeting-to-work" target="_blank" rel="noreferrer" className="btn btn-ghost btn-sm">
             GitHub
           </a>
+          <Link to="/demo/js77qc76762vk73g6k01t2c8n18e9xp1" className="btn btn-ghost btn-sm">
+            See a finished meeting
+          </Link>
           <StartDemoButton className="btn btn-primary btn-sm">Try the demo</StartDemoButton>
         </div>
       </nav>

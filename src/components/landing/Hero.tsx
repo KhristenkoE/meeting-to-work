@@ -1,5 +1,4 @@
-import { ArrowRight, History, Sparkles } from 'lucide-react'
-import { Link } from 'react-router'
+import { ArrowRight, Sparkles } from 'lucide-react'
 import StartDemoButton from '../StartDemoButton.tsx'
 
 export default function Hero() {
@@ -14,23 +13,17 @@ export default function Hero() {
           AI execution layer for meetings
         </span>
         <h1 className="mt-8 text-6xl font-extrabold leading-[1.02] tracking-tight lg:text-7xl">
-          Your meeting ended.{' '}
+          Research, briefs and tasks,{' '}
           <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-            The work already started.
+            done before the meeting ends.
           </span>
         </h1>
         <p className="mt-7 max-w-2xl text-xl leading-relaxed text-base-content/65">
-          Most meeting assistants tell you what happened. Meeting2Work starts doing what happens next.
+          During the meeting it finds what was agreed, does the research and briefs itself, assigns human tasks, and asks before sending anything.
         </p>
-        <div className="mt-10 flex items-center gap-3">
-          <StartDemoButton className="btn btn-primary btn-lg shadow-lg shadow-primary/30">
-            Experience sample meeting <ArrowRight size={20} />
-          </StartDemoButton>
-          <Link to="/demo/js77qc76762vk73g6k01t2c8n18e9xp1" className="btn btn-ghost btn-lg text-base-content/70">
-            <History size={20} /> See a finished meeting
-          </Link>
-        </div>
-        <a href="#how" className="link link-hover mt-5 text-sm text-base-content/50">See how it works</a>
+        <StartDemoButton className="btn btn-primary btn-lg mt-10 shadow-lg shadow-primary/30">
+          Experience sample meeting <ArrowRight size={20} />
+        </StartDemoButton>
       </div>
     </section>
   )

@@ -44,3 +44,24 @@
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black 30%, transparent 100%);
 }
+.m2w-anim {
+  animation: 14s infinite both;
+  animation-name: var(--kf);
+}
+@keyframes l1 { 0%, 3.5% { opacity: 0; translate: 0 8px } 7%, 100% { opacity: 1 } }
+@keyframes l2 { 0%, 14% { opacity: 0; translate: 0 8px } 17.5%, 100% { opacity: 1 } }
+@keyframes l3 { 0%, 43% { opacity: 0; translate: 0 8px } 46.5%, 100% { opacity: 1 } }
+@keyframes l4 { 0%, 68% { opacity: 0; translate: 0 8px } 71.5%, 100% { opacity: 1 } }
+@keyframes c1 { 0%, 21% { opacity: 0; translate: 16px 0 } 25%, 100% { opacity: 1 } }
+@keyframes c2 { 0%, 50% { opacity: 0; translate: 16px 0 } 54%, 100% { opacity: 1 } }
+@keyframes c3 { 0%, 75% { opacity: 0; translate: 16px 0 } 79%, 100% { opacity: 1 } }
+@keyframes d1 { 0%, 3.5% { opacity: 0 } 7%, 14% { opacity: 1 } 14.1%, 100% { opacity: 0 } }
+@keyframes d2 { 0%, 14% { opacity: 0 } 17.5%, 43% { opacity: 1 } 43.1%, 100% { opacity: 0 } }
+@keyframes d3 { 0%, 43% { opacity: 0 } 46.5%, 68% { opacity: 1 } 68.1%, 100% { opacity: 0 } }
+@keyframes d4 { 0%, 68% { opacity: 0 } 71.5%, 100% { opacity: 1 } }
+@keyframes s1 { 0%, 21% { opacity: 0 } 25%, 32% { opacity: 1 } 32.1%, 100% { opacity: 0 } }
+@keyframes s2 { 0%, 32% { opacity: 0 } 32.1%, 54% { opacity: 1 } 54.1%, 100% { opacity: 0 } }
+@keyframes s3 { 0%, 54% { opacity: 0 } 54.1%, 100% { opacity: 1 } }
+@media (prefers-reduced-motion: reduce) {
+  .m2w-anim { animation: none }
+}
