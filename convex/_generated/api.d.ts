@@ -9,6 +9,10 @@
  */
 
 import type * as demo from "../demo.js";
+import type * as detect from "../detect.js";
+import type * as policy from "../policy.js";
+import type * as schemas from "../schemas.js";
+import type * as work from "../work.js";
 
 import type {
   ApiFromModules,
@@ -18,6 +22,10 @@ import type {
 
 declare const fullApi: ApiFromModules<{
   demo: typeof demo;
+  detect: typeof detect;
+  policy: typeof policy;
+  schemas: typeof schemas;
+  work: typeof work;
 }>;
 
 /**

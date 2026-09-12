@@ -1,16 +1,22 @@
 import { useQuery } from 'convex/react'
+import { useState } from 'react'
 import { ListChecks, MessageSquareText, RotateCcw } from 'lucide-react'
 import { Link, useParams } from 'react-router'
 import { api } from '../../convex/_generated/api'
 import type { Id } from '../../convex/_generated/dataModel'
 import StartDemoButton from '../components/StartDemoButton.tsx'
 import Transcript from '../components/Transcript.tsx'
+import WorkCard from '../components/WorkCard.tsx'
+import WorkDetails from '../components/WorkDetails.tsx'
 import { Wordmark } from '../components/landing/Nav.tsx'
 
 export default function Demo() {
   const meetingId = useParams().meetingId as Id<'meetings'>
   const meeting = useQuery(api.demo.getMeeting, { meetingId })
   const chunks = useQuery(api.demo.listChunks, { meetingId })
+  const items = useQuery(api.work.listWorkItems, { meetingId })
+  const [selectedId, setSelectedId] = useState<Id<'workItems'> | null>(null)
+  const selected = items?.find((i) => i._id === selectedId)
 
   return (
     <div className="min-h-screen bg-base-100">
@@ -67,8 +73,33 @@ export default function Demo() {
             <div className="card-body">
               <h2 className="card-title text-base-content/80">
                 <ListChecks size={18} className="text-primary" /> Work items
+                {items && items.length > 0 && (
+                  <span className="badge badge-primary badge-outline badge-sm ml-auto">{items.length} work items</span>
+                )}
               </h2>
-              <p className="text-base-content/55">Work items appear here as they're detected.</p>
+              {items === undefined ? (
+                <div className="space-y-3">
+                  <div className="skeleton h-24 w-full" />
+                  <div className="skeleton h-24 w-full" />
+                </div>
+              ) : items.length === 0 ? (
+                <p className="flex items-center gap-2 text-base-content/55">
+                  {meeting?.status === 'running' ? (
+                    <>
+                      Listening for work… <span className="loading loading-dots loading-sm text-primary" />
+                    </>
+                  ) : (
+                    'No work items were detected.'
+                  )}
+                </p>
+              ) : (
+                <div className="space-y-3">
+                  {items.map((item) => (
+                    <WorkCard key={item._id} item={item} onSelect={(i) => setSelectedId(i._id)} />
+                  ))}
+                </div>
+              )}
+              {selected && <WorkDetails item={selected} onClose={() => setSelectedId(null)} />}
             </div>
           </section>
         </main>

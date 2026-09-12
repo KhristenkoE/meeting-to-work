@@ -47,6 +47,7 @@ export const appendChunk = internalMutation({
   },
   handler: async (ctx, args) => {
     await ctx.db.insert('transcriptChunks', args)
+    await ctx.scheduler.runAfter(0, internal.detect.detectWork, { meetingId: args.meetingId })
   },
 })
 
