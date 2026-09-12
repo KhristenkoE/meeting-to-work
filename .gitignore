@@ -8,3 +8,9 @@ docs/
 AGENTS.md
 CLAUDE.md
 .claude/
+*.log
+*.local
+dist-ssr
+.vscode/*
+!.vscode/extensions.json
+.idea
