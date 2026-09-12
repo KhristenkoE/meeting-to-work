@@ -24,7 +24,7 @@ npm run dev
 
 - Convex deployment: `XAI_API_KEY`, `EXA_API_KEY`, `FIRECRAWL_API_KEY`
 - Frontend: `VITE_CONVEX_URL`
-- Render build command: `npx convex deploy --cmd 'npm run build'` with `CONVEX_DEPLOY_KEY`; publish dir `dist`; SPA rewrite `/* → /index.html`
+- Deploy: `render.yaml` Blueprint (static site, build `npx convex deploy --cmd 'npm run build'`, publish `dist`, SPA rewrite); set `CONVEX_DEPLOY_KEY` in the Render dashboard
 
 ## Stack
 
