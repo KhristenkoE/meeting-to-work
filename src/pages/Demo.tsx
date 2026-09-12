@@ -19,6 +19,7 @@ export default function Demo() {
   const items = useQuery(api.work.listWorkItems, { meetingId })
   const artifacts = useQuery(api.work.listArtifacts, { meetingId })
   const briefReady = (artifacts?.length ?? 0) > 0
+  const speakers = [...new Set(chunks?.map((c) => c.speaker).filter((s): s is string => !!s))]
   const showResults = meeting?.status === 'completed' && !!items?.length && !items.some((i) => STATUS[i.status].active)
   const [selectedId, setSelectedId] = useState<Id<'workItems'> | null>(null)
   const selected = items?.find((i) => i._id === selectedId)
@@ -39,7 +40,7 @@ export default function Demo() {
             {meeting === undefined ? (
               <div className="skeleton h-5 w-56" />
             ) : meeting ? (
-              <>
+              <div className="flex flex-1 flex-wrap items-center gap-x-3 gap-y-1">
                 <h1 className="font-semibold">{meeting.title}</h1>
                 {meeting.status === 'running' ? (
                   <span className="badge badge-error badge-outline badge-sm gap-1.5">
@@ -48,7 +49,20 @@ export default function Demo() {
                 ) : (
                   <span className="badge badge-success badge-outline badge-sm">Completed</span>
                 )}
-              </>
+                {speakers.map((name) => (
+                  <span key={name} className="flex items-center gap-1.5 text-sm text-base-content/70">
+                    <span className="avatar avatar-placeholder">
+                      <span className="w-6 rounded-full bg-primary/20 text-xs font-semibold text-primary">{name[0]}</span>
+                    </span>
+                    {name}
+                  </span>
+                ))}
+                <p className="basis-full text-xs text-base-content/50">
+                  {meeting.status === 'completed'
+                    ? 'This meeting has finished. Every item below was detected and handled during the call.'
+                    : 'Replay of a recorded meeting. Work is detected and executed live by AI as the conversation unfolds.'}
+                </p>
+              </div>
             ) : null}
           </div>
           <StartDemoButton className="btn btn-ghost btn-sm">
@@ -102,19 +116,22 @@ export default function Demo() {
                   <div className="skeleton h-24 w-full" />
                 </div>
               ) : items.length === 0 ? (
-                <p className="flex items-center gap-2 text-base-content/55">
+                <div className="text-base-content/55">
                   {meeting?.lastError ? (
-                    <span role="alert" className="alert alert-warning alert-soft">
+                    <div role="alert" className="alert alert-warning alert-soft">
                       Work detection is failing: {meeting.lastError}. Replay to try again.
-                    </span>
+                    </div>
                   ) : meeting?.status === 'running' ? (
                     <>
-                      Listening for work… <span className="loading loading-dots loading-sm text-primary" />
+                      <p className="flex items-center gap-2">
+                        Listening for work… <span className="loading loading-dots loading-sm text-primary" />
+                      </p>
+                      <p className="mt-1 text-sm text-base-content/40">First items usually appear within ~10 seconds.</p>
                     </>
                   ) : (
-                    'No work items were detected.'
+                    <p>No work items were detected.</p>
                   )}
-                </p>
+                </div>
               ) : (
                 <div className="space-y-3">
                   {showResults && <Results items={items} />}

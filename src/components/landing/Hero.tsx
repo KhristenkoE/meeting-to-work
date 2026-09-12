@@ -1,4 +1,5 @@
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, History, Sparkles } from 'lucide-react'
+import { Link } from 'react-router'
 import StartDemoButton from '../StartDemoButton.tsx'
 
 export default function Hero() {
@@ -25,8 +26,11 @@ export default function Hero() {
           <StartDemoButton className="btn btn-primary btn-lg shadow-lg shadow-primary/30">
             Experience sample meeting <ArrowRight size={20} />
           </StartDemoButton>
-          <a href="#how" className="btn btn-ghost btn-lg text-base-content/70">See how it works</a>
+          <Link to="/demo/js77qc76762vk73g6k01t2c8n18e9xp1" className="btn btn-ghost btn-lg text-base-content/70">
+            <History size={20} /> See a finished meeting
+          </Link>
         </div>
+        <a href="#how" className="link link-hover mt-5 text-sm text-base-content/50">See how it works</a>
       </div>
     </section>
   )
