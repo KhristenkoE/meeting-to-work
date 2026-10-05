@@ -92,7 +92,9 @@ Set provider keys on the Convex deployment (dashboard or `npx convex env set`):
 | `FIRECRAWL_API_KEY` | Convex | page extraction |
 | `VITE_CONVEX_URL` | frontend | written by `npx convex dev` |
 
-Scripts: `npm run dev` · `npm run build` · `npm run typecheck` (app, node and convex tsconfigs).
+Scripts: `npm run dev` · `npm run build` · `npm run typecheck` (app, node and convex tsconfigs) · `npm run lint` · `npm test`.
+
+The Demo page composes `DemoHeader`, `TranscriptPanel`, and `WorkItemsPanel`. `useDemoMeeting` owns realtime subscriptions, derived meeting state, and the connection timeout; `useWorkItemSelection` keeps the selected item synced with those subscriptions. The page tests use mocked Convex subscriptions to cover loading and recovery, empty and completed states, artifact readiness, and live detail selection without running the backend.
 
 ## Deploy
 
