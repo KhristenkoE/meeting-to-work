@@ -1,5 +1,7 @@
 # Meeting2Work
 
+_I built this in one day at the [Grok Bot Serbia Hackathon](https://hackathon.cursorserbia.com)_
+
 **Most meeting assistants tell you what happened. Meeting2Work starts doing what happens next.**
 
 An AI execution layer for meetings: it listens to a conversation, detects work, routes each item to AI, a human, or an approval gate, and starts safe AI work immediately.
