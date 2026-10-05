@@ -4,7 +4,7 @@
 
 An AI execution layer for meetings: it listens to a conversation, detects work, routes each item to AI, a human, or an approval gate, and starts safe AI work immediately.
 
-[Live demo](https://meeting2work.onrender.com/) · [Repo](https://github.com/KhristenkoE/meeting-to-work)
+[Live demo](https://www.loom.com/share/6f71ffa10d8f4546a2e81f349464eb4c) · [Repo](https://github.com/KhristenkoE/meeting-to-work)
 
 ![Meeting2Work demo: transcript on the left, work cards executing on the right](public/demo.png)
 
